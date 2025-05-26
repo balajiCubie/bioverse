@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioVerse | Living Systems Simulation</title>
+    
+    <!-- SEO and Social Meta Tags -->
     <meta name="description" content="BioVerse is a simulation platform exploring biology, ecology, and evolution to shape the future of life and intelligence.">
     <meta name="keywords" content="biology simulation, life modeling, medical simulation, ecological AI, planetary intelligence, BioVerse">
     <meta property="og:title" content="BioVerse | Living Systems Simulation">
     <meta property="og:description" content="Simulating Life to Shape the Future - Explore living systems at all scales with BioVerse">
     <meta property="og:type" content="website">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="en">
-    <meta http-equiv="Content-Language" content="en">
-    <!-- Prepare for multilingual support -->
-    <link rel="alternate" hreflang="en" href="/en/" />
-    <link rel="alternate" hreflang="es" href="/es/" />
-    <link rel="alternate" hreflang="fr" href="/fr/" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta property="og:image" content="https://bioverse.ai/og-image.jpg">
+    <meta property="og:url" content="https://bioverse.ai">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0a1628">
+    
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- Internationalization -->
+    <link rel="alternate" hreflang="en" href="https://bioverse.ai/en/">
+    <link rel="alternate" hreflang="es" href="https://bioverse.ai/es/">
+    <link rel="alternate" hreflang="fr" href="https://bioverse.ai/fr/">
 
+    <style>
+        /* CSS Reset and Variables */
         :root {
             --primary-blue: #0a1628;
             --deep-blue: #051016;
@@ -33,39 +44,69 @@
             --glow-cyan: #06b6d4;
             --text-light: #e5e7eb;
             --text-dim: #9ca3af;
+            
+            /* Animation Curves */
+            --bounce: cubic-bezier(0.4, 2.0, 0.6, 1.0);
+            --smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Enhanced Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
         }
 
         body {
-            /* Futuristic organic-tech background with animated SVG neural/tree/molecular imagery */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 50%, var(--forest-green) 100%);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, 
+                var(--deep-blue) 0%, 
+                var(--primary-blue) 50%, 
+                var(--forest-green) 100%);
             color: var(--text-light);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        /* Animated SVG neural network background */
-        .svg-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.18;
-        }
-
-        /* Parallax layers for molecular/neural elements */
-        .parallax {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .parallax-layer {
-            position: absolute;
-            width: 100vw; height: 100vh;
+        /* Performance Optimizations */
+        .will-change {
             will-change: transform;
+            backface-visibility: hidden;
         }
 
-        /* Navigation */
+        /* Enhanced Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2) drop-shadow(0 0 20px var(--neon-green)); }
+        }
+
+        /* General Styles */
         nav {
             position: fixed;
             top: 0;
@@ -283,17 +324,21 @@
 
         .feature-card {
             background: rgba(16, 185, 129, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(16, 185, 129, 0.3);
             border-radius: 20px;
             padding: 2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            transition: all 0.4s var(--bounce);
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
-            border-color: var(--neon-green);
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 
+                0 20px 50px rgba(16, 185, 129, 0.2),
+                0 0 20px rgba(0, 255, 136, 0.2);
         }
 
         /* Feature icons: animated glowing SVGs */
@@ -306,6 +351,11 @@
             box-shadow: 0 0 16px var(--neon-green), 0 0 32px var(--glow-cyan);
             animation: pulse-glow 2.5s infinite alternate;
             font-size: 2rem;
+            transition: transform 0.3s cubic-bezier(0.4, 2.0, 0.6, 1.0);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: translateZ(20px) rotateY(360deg);
         }
 
         .feature-card h3 {
@@ -412,6 +462,22 @@
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
+                position: fixed;
+                top: 4rem;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 4rem);
+                background: var(--primary-blue);
+                flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s var(--smooth);
+            }
+
+            .menu-open .nav-links {
+                right: 0;
+            }
+
+            .nav-links {
                 display: none;
             }
             
@@ -429,6 +495,22 @@
             
             .section {
                 padding: 4rem 1rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav-links, .cta-button, .feature-icon {
+                display: none;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .section {
+                page-break-inside: avoid;
             }
         }
 
@@ -471,9 +553,46 @@
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
+
+        /* Enhanced particle system */
+        .particle-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float var(--duration, 5s) ease-in-out infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(10px, -10px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, -20px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-10px, -10px) rotate(270deg);
+            }
+        }
     </style>
 </head>
-<body lang="en">
+<body class="loading" data-theme="dark">
     <!-- Parallax SVG layers for molecular/neural elements -->
     <div class="parallax">
         <svg class="parallax-layer" id="parallax1" style="z-index:1; opacity:0.12;" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -505,30 +624,38 @@
         </defs>
     </svg>
     <!-- Navigation -->
-    <nav>
+    <nav aria-label="Main Navigation">
         <div class="nav-container">
-            <div class="logo">BioVerse</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#use-cases">Use Cases</a></li>
-                <li><a href="#demo">Demo</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <div class="logo" aria-label="BioVerse Home">BioVerse</div>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="#home" role="menuitem">Home</a></li>
+                <li role="none"><a href="#about" role="menuitem">About</a></li>
+                <li role="none"><a href="#features" role="menuitem">Features</a></li>
+                <li role="none"><a href="#use-cases" role="menuitem">Use Cases</a></li>
+                <li role="none"><a href="#demo" role="menuitem">Demo</a></li>
+                <li role="none"><a href="#team" role="menuitem">Team</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
             </ul>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <label for="lang-switch" class="sr-only">Language</label>
+                <select id="lang-switch" aria-label="Select language" style="background: var(--deep-blue); color: var(--text-light); border: 1px solid var(--neon-green); border-radius: 8px; padding: 0.3rem 0.7rem;">
+                    <option value="en" selected>EN</option>
+                    <option value="es">ES</option>
+                    <option value="fr">FR</option>
+                </select>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" aria-labelledby="hero-title">
         <div class="hero-content">
-            <h1 class="glow">BioVerse</h1>
-            <p class="tagline">"Simulating Life to Shape the Future"</p>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-dim);">
-                Explore living systems at all scales — from microscopic cell dynamics to planetary ecosystems
+            <h1 class="glow" id="hero-title">BioVerse</h1>
+            <p class="tagline" aria-live="polite">Simulating Life to Shape the Future</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-dim);">
+                Journey through the living universe: from the quantum dance of molecules to the breathtaking complexity of entire biospheres. BioVerse empowers you to visualize, simulate, and shape the future of life itself.
             </p>
-            <a href="#demo" class="cta-button">Explore the Universe of Life</a>
+            <a href="#demo" class="cta-button" aria-label="Explore the Universe of Life">Explore the Universe of Life</a>
         </div>
         <!-- Enhanced animated DNA SVG -->
         <div class="dna-helix">
@@ -548,196 +675,144 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section fade-in">
-        <h2>About BioVerse</h2>
+    <section id="about" class="section fade-in" aria-labelledby="about-title">
+        <h2 id="about-title">About BioVerse</h2>
         <p>
-            BioVerse is an innovative simulation platform designed to explore the intricate dynamics of biology, ecology, and evolution.
-            Our mission is to advance the understanding of life and intelligence through cutting-edge technology and collaborative research.
+            <strong>BioVerse</strong> is a next-generation simulation engine designed to unlock the secrets of living systems. Our mission is to bridge the gap between biology, technology, and planetary stewardship by providing a platform where anyone can explore, experiment, and innovate.
         </p>
+        <ul style="margin-bottom: 1.5rem; color: var(--text-light);">
+            <li><strong>Mission:</strong> Empower humanity to understand and shape life at every scale.</li>
+            <li><strong>Vision:</strong> A world where biological insight drives sustainable progress and planetary health.</li>
+            <li><strong>Scientific Goals:</strong> Advance medicine, ecology, and AI through immersive, data-driven simulation.</li>
+        </ul>
         <p>
-            Join us on a journey from the microscopic world of cells and molecules to the vast interconnected web of planetary ecosystems.
-            Together, we can unlock the mysteries of life and pave the way for a sustainable and intelligent future.
+            Whether you're a researcher, educator, student, or innovator, BioVerse invites you to join a global community dedicated to exploring the wonders of life and intelligence.
         </p>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="section fade-in">
-        <h2>Features</h2>
+    <section id="features" class="section fade-in" aria-labelledby="features-title">
+        <h2 id="features-title">Core Features</h2>
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <!-- Animated glowing DNA icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2C10.343 2 9 3.343 9 5c0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zM12 9c-2.209 0-4 1.791-4 4s1.791 4 4 4s4-1.791 4-4S14.209 9 12 9z"/>
-                        <path d="M12 15v7m0-14V2m0 0C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5z"/>
-                    </svg>
-                </div>
-                <h3>Multi-Scale Simulations</h3>
-                <p>
-                    Explore biological and ecological systems from molecules to ecosystems.
-                    Our platform simulates complex interactions and dynamics at any scale.
-                </p>
+            <div class="feature-card" tabindex="0" aria-label="Living Species Simulation">
+                <div class="feature-icon">🧬</div>
+                <h3>Living Species Simulation</h3>
+                <p>Model the emergence, adaptation, and evolution of digital organisms. Simulate genetic expression, protein folding, and cellular processes in real time.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <!-- Animated glowing neural network icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 12l2-2m0 0l2 2m-2-2v8m6-8l2-2m0 0l2 2m-2-2v8m6-8l2-2m0 0l2 2m-2-2v8"/>
-                    </svg>
-                </div>
-                <h3>Neural & Evolutionary Algorithms</h3>
-                <p>
-                    Leverage the power of neural networks and evolutionary algorithms
-                    to optimize and evolve solutions within the simulation.
-                </p>
+            <div class="feature-card" tabindex="0" aria-label="Ecosystem Dynamics">
+                <div class="feature-icon">🌱</div>
+                <h3>Ecosystem Dynamics</h3>
+                <p>Visualize food webs, nutrient cycles, and climate interactions. Watch entire ecosystems respond to change, disturbance, and restoration.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <!-- Animated glowing globe with network nodes icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4.929 12.586l-1.414-1.414L12 2l8.485 8.172l-1.414 1.414L12 4.828z"/>
-                        <path d="M2 12h20M2 12l4.929 4.586M22 12l-4.929 4.586M2 12l4.929-4.586M22 12l-4.929-4.586"/>
-                    </svg>
-                </div>
-                <h3>Global Collaboration</h3>
-                <p>
-                    Connect and collaborate with researchers, educators, and students
-                    from around the world. Share insights, data, and成果 to advance
-                    collective knowledge.
-                </p>
+            <div class="feature-card" tabindex="0" aria-label="Medical Bio-Modeling">
+                <div class="feature-icon">🩺</div>
+                <h3>Medical Bio-Modeling</h3>
+                <p>Simulate disease spread, drug interactions, and personalized medicine. Accelerate discovery and optimize treatments with virtual clinical trials.</p>
+            </div>
+            <div class="feature-card" tabindex="0" aria-label="Evolutionary Intelligence">
+                <div class="feature-icon">🧠</div>
+                <h3>Evolutionary Intelligence</h3>
+                <p>Explore the evolution of neural networks, adaptive behaviors, and emergent intelligence. Harness bio-inspired AI for real-world solutions.</p>
+            </div>
+            <div class="feature-card" tabindex="0" aria-label="Integration with Curex & Earth Simulation">
+                <div class="feature-icon">🔗</div>
+                <h3>Integration with Curex & Earth Simulation</h3>
+                <p>Connect with the Curex platform for advanced analytics, and simulate planetary-scale phenomena with Earth Simulation integration.</p>
             </div>
         </div>
     </section>
 
     <!-- Use Cases Section -->
-    <section id="use-cases" class="section fade-in">
-        <h2>Use Cases</h2>
+    <section id="use-cases" class="section fade-in" aria-labelledby="use-cases-title">
+        <h2 id="use-cases-title">Use Cases</h2>
         <div class="use-case-grid">
-            <div class="use-case">
-                <div class="use-case-icon">
-                    <!-- Animated glowing microscope icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2v10m0 0l3 3m-3-3l-3 3m3-13v2m0 4v2m0 4v2m0 4v2m0 4v2m0 4v2m0 4v2m0 4v2"/>
-                    </svg>
-                </div>
-                <h3>Research & Education</h3>
-                <p>
-                    Enhance teaching and learning with interactive simulations
-                    that demonstrate complex biological and ecological concepts.
-                </p>
+            <div class="use-case" tabindex="0" aria-label="Research">
+                <div class="use-case-icon">🔬</div>
+                <h3>Research</h3>
+                <p>Accelerate discovery in biology, medicine, and environmental science with high-fidelity, interactive simulations.</p>
             </div>
-            <div class="use-case">
-                <div class="use-case-icon">
-                    <!-- Animated glowing stethoscope icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 3h18v18H3z"/>
-                        <path d="M9 9h6v6H9z"/>
-                    </svg>
-                </div>
-                <h3>Medical & Health</h3>
-                <p>
-                    Simulate and analyze biological processes for medical research,
-                    drug development, and health education.
-                </p>
+            <div class="use-case" tabindex="0" aria-label="Education">
+                <div class="use-case-icon">🎓</div>
+                <h3>Education</h3>
+                <p>Bring science to life in the classroom. Enable students to experiment, visualize, and learn through hands-on digital labs.</p>
             </div>
-            <div class="use-case">
-                <div class="use-case-icon">
-                    <!-- Animated glowing leaf and globe icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2C10.343 2 9 3.343 9 5c0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zM12 9c-2.209 0-4 1.791-4 4s1.791 4 4 4s4-1.791 4-4S14.209 9 12 9z"/>
-                        <path d="M12 15v7m0-14V2m0 0C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5z"/>
-                    </svg>
-                </div>
-                <h3>Ecology & Environment</h3>
-                <p>
-                    Model and simulate ecological interactions, environmental changes,
-                    and conservation efforts.
-                </p>
+            <div class="use-case" tabindex="0" aria-label="Medicine">
+                <div class="use-case-icon">💊</div>
+                <h3>Medicine</h3>
+                <p>Test therapies, predict outcomes, and personalize care using virtual patients and disease models.</p>
+            </div>
+            <div class="use-case" tabindex="0" aria-label="Climate Modeling">
+                <div class="use-case-icon">🌍</div>
+                <h3>Climate Modeling</h3>
+                <p>Forecast environmental change, assess risk, and design solutions for a resilient planet.</p>
             </div>
         </div>
     </section>
 
     <!-- Demo Section -->
-    <section id="demo" class="section fade-in">
-        <h2>Interactive Demo</h2>
-        <div class="demo-preview">
-            <!-- Placeholder for interactive demo content -->
-            <p style="color: var(--text-light); font-size: 1.2rem; margin-bottom: 1.5rem;">
-                Experience a preview of the BioVerse simulation environment.
-            </p>
-            <a href="#" class="cta-button">Launch Demo</a>
+    <section id="demo" class="section fade-in" aria-labelledby="demo-title">
+        <h2 id="demo-title">Live Demo / Sandbox</h2>
+        <div class="demo-preview" aria-label="Interactive Simulation Preview">
+            <h3 style="color: var(--neon-green); margin-bottom: 1rem;">Try BioVerse in Action</h3>
+            <p style="margin-bottom: 2rem;">Interact with a real-time simulation of cell division, ecosystem dynamics, or neural evolution. More demos coming soon!</p>
+            <div style="height: 200px; background: rgba(16, 185, 129, 0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;">
+                <p style="font-size: 1.2rem; color: var(--soft-green);">🧫 Live Cell Division Simulation (Preview)</p>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-dim);">Click to interact and watch life unfold!</p>
         </div>
     </section>
 
     <!-- Team Section -->
-    <section id="team" class="section fade-in">
-        <h2>Meet The Team</h2>
+    <section id="team" class="section fade-in" aria-labelledby="team-title">
+        <h2 id="team-title">Team & Contributors</h2>
         <div class="team-grid">
-            <div class="team-member">
-                <div class="member-avatar">
-                    <!-- Initials or icon for team member -->
-                    A
-                </div>
+            <div class="team-member" tabindex="0" aria-label="Dr. Alex Johnson, Founder & CEO">
+                <div class="member-avatar">AJ</div>
                 <h3>Dr. Alex Johnson</h3>
                 <p>Founder & CEO</p>
-                <p class="text-dim" style="font-size: 0.9rem;">
-                    Visionary leader with a passion for exploring the frontiers of life and intelligence.
-                </p>
+                <p class="text-dim" style="font-size: 0.9rem;">Visionary leader with a passion for exploring the frontiers of life and intelligence.</p>
             </div>
-            <div class="team-member">
-                <div class="member-avatar">
-                    <!-- Initials or icon for team member -->
-                    B
-                </div>
+            <div class="team-member" tabindex="0" aria-label="Dr. Bella Green, CTO">
+                <div class="member-avatar">BG</div>
                 <h3>Dr. Bella Green</h3>
-                <p>Co-Founder & CTO</p>
-                <p class="text-dim" style="font-size: 0.9rem;">
-                    Tech innovator dedicated to advancing simulation and AI technologies.
-                </p>
+                <p>Chief Technology Officer</p>
+                <p class="text-dim" style="font-size: 0.9rem;">Tech innovator dedicated to advancing simulation and AI technologies.</p>
             </div>
-            <div class="team-member">
-                <div class="member-avatar">
-                    <!-- Initials or icon for team member -->
-                    C
-                </div>
+            <div class="team-member" tabindex="0" aria-label="Dr. Charlie Brown, Lead Scientist">
+                <div class="member-avatar">CB</div>
                 <h3>Dr. Charlie Brown</h3>
                 <p>Lead Scientist</p>
-                <p class="text-dim" style="font-size: 0.9rem;">
-                    Expert in biological sciences, driving research and discovery.
-                </p>
+                <p class="text-dim" style="font-size: 0.9rem;">Expert in biological sciences, driving research and discovery.</p>
             </div>
-            <div class="team-member">
-                <div class="member-avatar">
-                    <!-- Initials or icon for team member -->
-                    D
-                </div>
+            <div class="team-member" tabindex="0" aria-label="Dr. Dana White, Chief of Operations">
+                <div class="member-avatar">DW</div>
                 <h3>Dr. Dana White</h3>
                 <p>Chief of Operations</p>
-                <p class="text-dim" style="font-size: 0.9rem;">
-                    Operations strategist ensuring seamless execution of our mission.
-                </p>
+                <p class="text-dim" style="font-size: 0.9rem;">Operations strategist ensuring seamless execution of our mission.</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section fade-in">
-        <h2>Contact Us</h2>
+    <section id="contact" class="section fade-in" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact & Join Us</h2>
         <p>
-            We would love to hear from you! Whether you have a question, feedback, or partnership inquiry,
-            please reach out to us.
+            Ready to explore the universe of life? Join our community of researchers, educators, and innovators shaping the future through biological simulation.
         </p>
-        <form action="#" method="POST" style="max-width: 600px; margin: 0 auto;">
+        <form action="#" method="POST" style="max-width: 600px; margin: 0 auto;" aria-label="Contact Form">
             <div style="margin-bottom: 1.5rem;">
-                <input type="text" name="name" placeholder="Your Name" required
+                <label for="name" class="sr-only">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true"
                     style="width: 100%; padding: 1rem; border: 1px solid var(--neon-green); border-radius: 10px; background: rgba(255, 255, 255, 0.1);"/>
             </div>
             <div style="margin-bottom: 1.5rem;">
-                <input type="email" name="email" placeholder="Your Email" required
+                <label for="email" class="sr-only">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true"
                     style="width: 100%; padding: 1rem; border: 1px solid var(--neon-green); border-radius: 10px; background: rgba(255, 255, 255, 0.1);"/>
             </div>
             <div style="margin-bottom: 1.5rem;">
-                <textarea name="message" rows="4" placeholder="Your Message" required
+                <label for="message" class="sr-only">Your Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Your Message" required aria-required="true"
                     style="width: 100%; padding: 1rem; border: 1px solid var(--neon-green); border-radius: 10px; background: rgba(255, 255, 255, 0.1);"></textarea>
             </div>
             <button type="submit" class="cta-button"
@@ -745,54 +820,390 @@
                 Send Message
             </button>
         </form>
+        <p style="color: var(--text-dim); margin-top: 1.5rem;">
+            📧 <a href="mailto:contact@bioverse.ai" style="color: var(--neon-green);">contact@bioverse.ai</a> | 📞 +1 (555) 123-4567 | 🌐 <a href="https://bioverse.ai" style="color: var(--neon-green);">bioverse.ai</a>
+        </p>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer aria-label="Site Footer">
         <div class="footer-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#features">Features</a>
-            <a href="#use-cases">Use Cases</a>
-            <a href="#demo">Demo</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#api">API Documentation</a>
+            <a href="#support">Support</a>
+            <a href="#careers">Careers</a>
         </div>
         <p style="color: var(--text-dim); font-size: 0.9rem;">
-            &copy; 2023 BioVerse. All rights reserved.
+            © 2025 BioVerse. All rights reserved. | Simulating Life to Shape the Future
         </p>
     </footer>
 
     <script>
-        // Parallax scrolling effect for molecular/neural SVG layers
-        window.addEventListener('scroll', function() {
-            const scrollY = window.scrollY;
-            const parallax1 = document.getElementById('parallax1');
-            const parallax2 = document.getElementById('parallax2');
-            if (parallax1) parallax1.style.transform = `translateY(${scrollY * 0.15}px)`;
-            if (parallax2) parallax2.style.transform = `translateY(${scrollY * 0.25}px)`;
+        // Performance-optimized scroll handling with requestAnimationFrame
+        let ticking = false;
+        const parallax1 = document.getElementById('parallax1');
+        const parallax2 = document.getElementById('parallax2');
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    if (parallax1) parallax1.style.transform = `translate3d(0, ${scrollY * 0.15}px, 0)`;
+                    if (parallax2) parallax2.style.transform = `translate3d(0, ${scrollY * 0.25}px, 0)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
-        // Smooth navigation for keyboard and mouse
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.classList.contains('feature-card')) {
+                        entry.target.style.transitionDelay = '${entry.target.dataset.delay}ms';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll handling with native behavior
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    e.preventDefault();
-                    target.setAttribute('tabindex', '-1');
-                    target.focus({preventScroll:true});
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Update URL without page jump
+                    history.pushState(null, '', this.getAttribute('href'));
                 }
             });
         });
-        // Micro-interactions: subtle scale on feature cards and team avatars
-        document.querySelectorAll('.feature-card, .team-member, .use-case').forEach(el => {
+
+        // Enhanced micro-interactions with hardware acceleration
+        const interactiveElements = document.querySelectorAll('.feature-card, .team-member, .use-case');
+        interactiveElements.forEach((el, index) => {
+            el.style.willChange = 'transform';
+            el.dataset.delay = index * 100;
+            
             el.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.04)';
+                this.style.transform = 'translate3d(0, -10px, 0) scale(1.04)';
             });
+            
             el.addEventListener('mouseleave', function() {
-                this.style.transform = '';
+                this.style.transform = 'translate3d(0, 0, 0) scale(1)';
             });
         });
+
+        // Mobile menu toggle with accessibility
+        const mobileMenuBtn = document.createElement('button');
+        mobileMenuBtn.className = 'mobile-menu-btn';
+        mobileMenuBtn.setAttribute('aria-label', 'Toggle menu');
+        mobileMenuBtn.innerHTML = '<span></span><span></span><span></span>';
+        
+        const nav = document.querySelector('nav .nav-container');
+        nav.insertBefore(mobileMenuBtn, nav.firstChild);
+
+        mobileMenuBtn.addEventListener('click', () => {
+            document.body.classList.toggle('menu-open');
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Theme toggle with system preference detection
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        const theme = localStorage.getItem('theme') || (prefersDark.matches ? 'dark' : 'light');
+        document.body.setAttribute('data-theme', theme);
+
+        prefersDark.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                document.body.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                const timing = performance.getEntriesByType('navigation')[0];
+                console.log(`Page load time: ${timing.loadEventEnd - timing.navigationStart}ms`);
+            });
+        }
+
+        // Remove loading class when content is ready
+        window.addEventListener('load', () => {
+            document.body.classList.remove('loading');
+            document.body.classList.add('loaded');
+        });
+
+        // Interactive DNA Animation
+        class SmoothAnimation {
+            constructor(options = {}) {
+                this.duration = options.duration || 1000;
+                this.easing = options.easing || (t => t < .5 ? 2*t*t : -1+(4-2*t)*t);
+                this.running = false;
+            }
+
+            animate(target, properties) {
+                if (this.running) return;
+                this.running = true;
+
+                const startTime = performance.now();
+                const initialValues = {};
+                const targetValues = {};
+
+                for (let prop in properties) {
+                    initialValues[prop] = parseFloat(getComputedStyle(target)[prop]) || 0;
+                    targetValues[prop] = properties[prop];
+                }
+
+                const tick = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(1, elapsed / this.duration);
+                    const easedProgress = this.easing(progress);
+
+                    for (let prop in properties) {
+                        const value = initialValues[prop] + (targetValues[prop] - initialValues[prop]) * easedProgress;
+                        target.style[prop] = `${value}px`;
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        this.running = false;
+                    }
+                };
+
+                requestAnimationFrame(tick);
+            }
+        }
+
+        // Enhanced DNA animation with physics
+        class DNAAnimation {
+            constructor(element) {
+                this.element = element;
+                this.animator = new SmoothAnimation({ duration: 800 });
+                this.setupAnimation();
+            }
+
+            setupAnimation() {
+                const strands = this.element.querySelectorAll('.dna-strand');
+                let phase = 0;
+
+                const animate = () => {
+                    strands.forEach((strand, i) => {
+                        const offset = Math.sin(phase + i * Math.PI) * 20;
+                        strand.style.transform = `translateX(${offset}px) scaleY(${1 + Math.abs(offset/100)})`;
+                    });
+
+                    phase += 0.02;
+                    requestAnimationFrame(animate);
+                };
+
+                animate();
+            }
+        }
+
+        // Initialize enhanced animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const dnaHelix = document.querySelector('.dna-helix');
+            if (dnaHelix) new DNAAnimation(dnaHelix);
+
+            // Add particle system
+            const particleContainer = document.createElement('div');
+            particleContainer.className = 'particle-system';
+            document.body.appendChild(particleContainer);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.cssText = `
+                    left: ${Math.random() * 100}vw;
+                    top: ${Math.random() * 100}vh;
+                    animation-delay: ${Math.random() * 5}s;
+                    animation-duration: ${5 + Math.random() * 5}s;
+                `;
+                particleContainer.appendChild(particle);
+            }
+        });
+
+        // Optimized scroll-based animations
+        const createScrollAnimation = (element, options = {}) => {
+            const defaults = {
+                threshold: 0.2,
+                transform: 'translateY(30px)',
+                opacity: 0,
+                duration: '0.6s'
+            };
+            const config = { ...defaults, ...options };
+            
+            element.style.opacity = config.opacity;
+            element.style.transform = config.transform;
+            element.style.transition = `all ${config.duration} cubic-bezier(0.4, 0, 0.2, 1)`;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.opacity = 1;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: config.threshold });
+
+            observer.observe(element);
+        };
+
+        // Initialize scroll animations
+        document.querySelectorAll('.section').forEach((section, index) => {
+            createScrollAnimation(section, {
+                transform: `translateY(${50 + index * 10}px)`,
+                duration: `${0.6 + index * 0.1}s`
+            });
+        });
+
+        // Interactive Demo Logic
+        class CellSimulation {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.cells = [];
+                this.running = false;
+                this.setupCanvas();
+                this.addEventListeners();
+            }
+
+            setupCanvas() {
+                this.canvas.width = this.canvas.offsetWidth * window.devicePixelRatio;
+                this.canvas.height = this.canvas.offsetHeight * window.devicePixelRatio;
+                this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+
+            addEventListeners() {
+                this.canvas.addEventListener('click', (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    this.addCell(x, y);
+                });
+
+                window.addEventListener('resize', () => this.setupCanvas());
+            }
+
+            addCell(x, y) {
+                this.cells.push({
+                    x,
+                    y,
+                    radius: 10,
+                    growth: 0,
+                    dividing: false,
+                    color: `hsla(${Math.random() * 360}, 70%, 50%, 0.8)`
+                });
+            }
+
+            start() {
+                this.running = true;
+                this.animate();
+            }
+
+            animate() {
+                if (!this.running) return;
+
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                this.cells.forEach((cell, index) => {
+                    // Cell division logic
+                    cell.growth += 0.01;
+                    if (cell.growth > 1 && !cell.dividing) {
+                        cell.dividing = true;
+                        setTimeout(() => {
+                            const angle = Math.random() * Math.PI * 2;
+                            this.addCell(
+                                cell.x + Math.cos(angle) * 30,
+                                cell.y + Math.sin(angle) * 30
+                            );
+                            cell.growth = 0;
+                            cell.dividing = false;
+                        }, 1000);
+                    }
+
+                    // Draw cell
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        cell.x,
+                        cell.y,
+                        cell.radius * (1 + cell.growth * 0.5),
+                        0,
+                        Math.PI * 2
+                    );
+                    this.ctx.fillStyle = cell.color;
+                    this.ctx.fill();
+
+                    // Draw division visualization
+                    if (cell.dividing) {
+                        this.ctx.beginPath();
+                        this.ctx.arc(
+                            cell.x,
+                            cell.y,
+                            cell.radius * 2,
+                            0,
+                            Math.PI * 2
+                        );
+                        this.ctx.strokeStyle = 'rgba(0, 255, 136, 0.3)';
+                        this.ctx.stroke();
+                    }
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize demo when section becomes visible
+        const demoSection = document.querySelector('#demo');
+        const demoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const canvas = document.createElement('canvas');
+                    canvas.style.cssText = `
+                        width: 100%;
+                        height: 300px;
+                        background: rgba(16, 185, 129, 0.1);
+                        border-radius: 15px;
+                        cursor: pointer;
+                    `;
+                    
+                    const demoContainer = document.querySelector('.demo-preview div');
+                    demoContainer.innerHTML = '';
+                    demoContainer.appendChild(canvas);
+                    
+                    const simulation = new CellSimulation(canvas);
+                    simulation.start();
+                    
+                    // Add initial cells
+                    for (let i = 0; i < 3; i++) {
+                        simulation.addCell(
+                            Math.random() * canvas.offsetWidth,
+                            Math.random() * canvas.offsetHeight
+                        );
+                    }
+                }
+            });
+        });
+
+        demoObserver.observe(demoSection);
     </script>
 </body>
 </html>
