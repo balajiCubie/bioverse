@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
     <title>BioVerse | Living Systems Simulation</title>
     <meta name="description" content="BioVerse is a simulation platform exploring biology, ecology, and evolution to shape the future of life and intelligence.">
     <meta name="keywords" content="biology simulation, life modeling, medical simulation, ecological AI, planetary intelligence, BioVerse">
     <meta property="og:title" content="BioVerse | Living Systems Simulation">
     <meta property="og:description" content="Simulating Life to Shape the Future - Explore living systems at all scales with BioVerse">
     <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en">
+    <meta http-equiv="Content-Language" content="en">
+    <!-- Prepare for multilingual support -->
+    <link rel="alternate" hreflang="en" href="/en/" />
+    <link rel="alternate" hreflang="es" href="/es/" />
+    <link rel="alternate" hreflang="fr" href="/fr/" />
     <style>
         * {
             margin: 0;
@@ -29,36 +36,33 @@
         }
 
         body {
+            /* Futuristic organic-tech background with animated SVG neural/tree/molecular imagery */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 50%, var(--forest-green) 100%);
             color: var(--text-light);
             overflow-x: hidden;
         }
 
-        /* Animated background particles */
-        .bg-particles {
+        /* Animated SVG neural network background */
+        .svg-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
             pointer-events: none;
-            z-index: -1;
+            opacity: 0.18;
         }
 
-        .particle {
+        /* Parallax layers for molecular/neural elements */
+        .parallax {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .parallax-layer {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--neon-green);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            width: 100vw; height: 100vh;
+            will-change: transform;
         }
 
         /* Navigation */
@@ -127,19 +131,23 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            /* ...existing code... */
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(120deg, rgba(10,22,40,0.95) 60%, rgba(16,185,129,0.08) 100%);
         }
 
         .hero-content {
+            /* ...existing code... */
             z-index: 2;
             max-width: 800px;
             animation: fadeInUp 1s ease-out;
+            backdrop-filter: blur(2px);
         }
 
         .hero h1 {
@@ -160,52 +168,43 @@
         }
 
         .cta-button {
-            background: linear-gradient(45deg, var(--neon-green), var(--soft-green));
+            /* ...existing code... */
+            background: linear-gradient(90deg, var(--neon-green), var(--glow-cyan));
             color: var(--deep-blue);
-            padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(.4,2,.6,1);
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3), 0 0 24px var(--glow-cyan);
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5), 0 0 32px var(--glow-cyan);
+            filter: brightness(1.2);
         }
 
-        /* DNA Animation */
+        /* Enhanced animated DNA (SVG) */
         .dna-helix {
             position: absolute;
-            right: 10%;
+            right: 8vw;
             top: 50%;
             transform: translateY(-50%);
-            width: 200px;
-            height: 400px;
-            animation: rotate 10s linear infinite;
+            width: 220px;
+            height: 420px;
+            z-index: 2;
         }
 
-        .dna-strand {
-            position: absolute;
-            width: 4px;
+        .dna-svg {
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, var(--neon-green), var(--glow-cyan));
-            border-radius: 2px;
-        }
-
-        .dna-strand:nth-child(1) {
-            left: 30px;
-            animation: wave 2s ease-in-out infinite;
-        }
-
-        .dna-strand:nth-child(2) {
-            right: 30px;
-            animation: wave 2s ease-in-out infinite reverse;
+            display: block;
+            filter: drop-shadow(0 0 16px var(--neon-green));
+            animation: rotate 18s linear infinite;
         }
 
         @keyframes rotate {
@@ -213,25 +212,31 @@
             100% { transform: translateY(-50%) rotateY(360deg); }
         }
 
-        @keyframes wave {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(1.2); }
+        /* Animated tree of life/neural net SVG for background */
+        .tree-svg {
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 100vw;
+            height: 40vh;
+            z-index: 1;
+            opacity: 0.22;
+            pointer-events: none;
+            animation: growTree 8s ease-in-out forwards;
         }
 
-        @keyframes pulse-glow {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2) drop-shadow(0 0 20px var(--neon-green)); }
+        @keyframes growTree {
+            0% { stroke-dashoffset: 1200; opacity: 0; }
+            60% { opacity: 1; }
+            100% { stroke-dashoffset: 0; opacity: 1; }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Glowing accent effects */
+        .glow {
+            text-shadow: 0 0 12px var(--neon-green), 0 0 24px var(--glow-cyan);
+        }
+
+        .cta-button, .feature-card, .team-member, .use-case {
+            box-shadow: 0 0 16px 0 rgba(0,255,136,0.08), 0 0 32px 0 rgba(6,182,212,0.06);
         }
 
         /* Sections */
@@ -239,6 +244,16 @@
             padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            background: linear-gradient(120deg, rgba(10,22,40,0.92) 80%, rgba(16,185,129,0.06) 100%);
+            border-radius: 32px;
+            margin-bottom: 3rem;
+            box-shadow: 0 0 32px 0 rgba(0,255,136,0.04);
+            transition: box-shadow 0.4s cubic-bezier(.4,2,.6,1);
+        }
+
+        .section.visible {
+            box-shadow: 0 0 64px 0 rgba(0,255,136,0.10);
         }
 
         .section h2 {
@@ -281,16 +296,16 @@
             border-color: var(--neon-green);
         }
 
+        /* Feature icons: animated glowing SVGs */
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, var(--neon-green), var(--glow-cyan));
+            width: 64px; height: 64px;
+            margin: 0 auto 1rem;
+            display: flex; align-items: center; justify-content: center;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--neon-green), var(--glow-cyan));
+            box-shadow: 0 0 16px var(--neon-green), 0 0 32px var(--glow-cyan);
+            animation: pulse-glow 2.5s infinite alternate;
+            font-size: 2rem;
         }
 
         .feature-card h3 {
@@ -458,10 +473,37 @@
         }
     </style>
 </head>
-<body>
-    <!-- Background particles -->
-    <div class="bg-particles" id="particles"></div>
-
+<body lang="en">
+    <!-- Parallax SVG layers for molecular/neural elements -->
+    <div class="parallax">
+        <svg class="parallax-layer" id="parallax1" style="z-index:1; opacity:0.12;" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="300" cy="200" r="60" fill="#00ff8899"/>
+            <ellipse cx="1600" cy="900" rx="80" ry="30" fill="#06b6d488"/>
+            <path d="M400 800 Q600 600 900 900" stroke="#06b6d4" stroke-width="8" fill="none" opacity="0.5"/>
+        </svg>
+        <svg class="parallax-layer" id="parallax2" style="z-index:2; opacity:0.09;" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1200" cy="300" r="40" fill="#10b98188"/>
+            <ellipse cx="500" cy="900" rx="50" ry="18" fill="#00ff8844"/>
+            <path d="M1500 200 Q1700 400 1600 700" stroke="#00ff88" stroke-width="6" fill="none" opacity="0.4"/>
+        </svg>
+    </div>
+    <!-- Animated SVG neural network background -->
+    <svg class="svg-bg" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="url(#neuralGradient)" stroke-width="2">
+            <path d="M100 900 Q400 700 800 900 T1700 900" opacity="0.5"/>
+            <path d="M200 800 Q600 600 1000 800 T1800 800" opacity="0.3"/>
+            <path d="M300 700 Q800 500 1200 700 T1900 700" opacity="0.2"/>
+            <circle cx="800" cy="900" r="8" fill="url(#neuralGradient)"/>
+            <circle cx="1000" cy="800" r="10" fill="url(#neuralGradient)"/>
+            <circle cx="1200" cy="700" r="7" fill="url(#neuralGradient)"/>
+        </g>
+        <defs>
+            <linearGradient id="neuralGradient" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00ff88"/>
+                <stop offset="1" stop-color="#06b6d4"/>
+            </linearGradient>
+        </defs>
+    </svg>
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -481,18 +523,27 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>BioVerse</h1>
+            <h1 class="glow">BioVerse</h1>
             <p class="tagline">"Simulating Life to Shape the Future"</p>
             <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-dim);">
                 Explore living systems at all scales — from microscopic cell dynamics to planetary ecosystems
             </p>
             <a href="#demo" class="cta-button">Explore the Universe of Life</a>
         </div>
-        
-        <!-- DNA Animation -->
+        <!-- Enhanced animated DNA SVG -->
         <div class="dna-helix">
-            <div class="dna-strand"></div>
-            <div class="dna-strand"></div>
+            <svg class="dna-svg" viewBox="0 0 120 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="dnaGrad" x1="0" y1="0" x2="120" y2="400" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00ff88"/>
+                        <stop offset="1" stop-color="#06b6d4"/>
+                    </linearGradient>
+                </defs>
+                <path d="M60 0 C90 100, 90 300, 60 400" stroke="url(#dnaGrad)" stroke-width="8" fill="none"/>
+                <path d="M60 0 C30 100, 30 300, 60 400" stroke="url(#dnaGrad)" stroke-width="8" fill="none" opacity="0.7"/>
+                <path d="M60 0 C75 100, 75 300, 60 400" stroke="url(#dnaGrad)" stroke-width="8" fill="none" opacity="0.7"/>
+                <path d="M60 0 C45 100, 45 300, 60 400" stroke="url(#dnaGrad)" stroke-width="8" fill="none" opacity="0.7"/>
+            </svg>
         </div>
     </section>
 
@@ -500,269 +551,247 @@
     <section id="about" class="section fade-in">
         <h2>About BioVerse</h2>
         <p>
-            BioVerse is a revolutionary simulation engine designed to explore and visualize living systems at unprecedented scales. 
-            Our mission is to bridge the gap between molecular biology, ecosystem dynamics, and planetary intelligence through 
-            advanced computational modeling.
+            BioVerse is an innovative simulation platform designed to explore the intricate dynamics of biology, ecology, and evolution.
+            Our mission is to advance the understanding of life and intelligence through cutting-edge technology and collaborative research.
         </p>
         <p>
-            We envision a future where biological understanding drives innovation in medicine, environmental conservation, 
-            and artificial intelligence. By simulating life from the quantum level to global ecosystems, BioVerse provides 
-            researchers, educators, and innovators with tools to unlock the secrets of living systems.
-        </p>
-        <p>
-            Our scientific goals include advancing personalized medicine, predicting ecological changes, developing 
-            bio-inspired AI systems, and creating sustainable solutions for humanity's greatest challenges.
+            Join us on a journey from the microscopic world of cells and molecules to the vast interconnected web of planetary ecosystems.
+            Together, we can unlock the mysteries of life and pave the way for a sustainable and intelligent future.
         </p>
     </section>
 
-    <!-- Core Features -->
+    <!-- Features Section -->
     <section id="features" class="section fade-in">
-        <h2>Core Features</h2>
+        <h2>Features</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🧬</div>
-                <h3>Living Species Simulation</h3>
-                <p>Model complex biological organisms with cellular-level precision, including genetic expression, protein synthesis, and metabolic pathways.</p>
+                <div class="feature-icon">
+                    <!-- Animated glowing DNA icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C10.343 2 9 3.343 9 5c0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zM12 9c-2.209 0-4 1.791-4 4s1.791 4 4 4s4-1.791 4-4S14.209 9 12 9z"/>
+                        <path d="M12 15v7m0-14V2m0 0C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5z"/>
+                    </svg>
+                </div>
+                <h3>Multi-Scale Simulations</h3>
+                <p>
+                    Explore biological and ecological systems from molecules to ecosystems.
+                    Our platform simulates complex interactions and dynamics at any scale.
+                </p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3>Ecosystem Dynamics</h3>
-                <p>Simulate entire ecosystems with predator-prey relationships, nutrient cycles, climate interactions, and biodiversity patterns.</p>
+                <div class="feature-icon">
+                    <!-- Animated glowing neural network icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12l2-2m0 0l2 2m-2-2v8m6-8l2-2m0 0l2 2m-2-2v8m6-8l2-2m0 0l2 2m-2-2v8"/>
+                    </svg>
+                </div>
+                <h3>Neural & Evolutionary Algorithms</h3>
+                <p>
+                    Leverage the power of neural networks and evolutionary algorithms
+                    to optimize and evolve solutions within the simulation.
+                </p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🏥</div>
-                <h3>Medical Bio-Modeling</h3>
-                <p>Advanced disease modeling, drug interaction simulations, and personalized treatment optimization for precision medicine.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🧠</div>
-                <h3>Evolutionary Intelligence</h3>
-                <p>Study evolutionary processes, neural development, and the emergence of complex behaviors in biological systems.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔗</div>
-                <h3>Curex Integration</h3>
-                <p>Seamless integration with Curex platform for enhanced data analysis and machine learning capabilities.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌐</div>
-                <h3>Earth Simulation</h3>
-                <p>Global-scale environmental modeling including climate systems, ocean currents, and atmospheric dynamics.</p>
+                <div class="feature-icon">
+                    <!-- Animated glowing globe with network nodes icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4.929 12.586l-1.414-1.414L12 2l8.485 8.172l-1.414 1.414L12 4.828z"/>
+                        <path d="M2 12h20M2 12l4.929 4.586M22 12l-4.929 4.586M2 12l4.929-4.586M22 12l-4.929-4.586"/>
+                    </svg>
+                </div>
+                <h3>Global Collaboration</h3>
+                <p>
+                    Connect and collaborate with researchers, educators, and students
+                    from around the world. Share insights, data, and成果 to advance
+                    collective knowledge.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Use Cases -->
+    <!-- Use Cases Section -->
     <section id="use-cases" class="section fade-in">
-        <div class="use-cases">
-            <h2>Use Cases</h2>
-            <div class="use-case-grid">
-                <div class="use-case">
-                    <div class="use-case-icon">🔬</div>
-                    <h3>Research</h3>
-                    <p>Accelerate scientific discovery in biology, ecology, and medical research through advanced simulation capabilities.</p>
+        <h2>Use Cases</h2>
+        <div class="use-case-grid">
+            <div class="use-case">
+                <div class="use-case-icon">
+                    <!-- Animated glowing microscope icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v10m0 0l3 3m-3-3l-3 3m3-13v2m0 4v2m0 4v2m0 4v2m0 4v2m0 4v2m0 4v2m0 4v2"/>
+                    </svg>
                 </div>
-                <div class="use-case">
-                    <div class="use-case-icon">🎓</div>
-                    <h3>Education</h3>
-                    <p>Interactive learning experiences for students and professionals to understand complex biological systems.</p>
+                <h3>Research & Education</h3>
+                <p>
+                    Enhance teaching and learning with interactive simulations
+                    that demonstrate complex biological and ecological concepts.
+                </p>
+            </div>
+            <div class="use-case">
+                <div class="use-case-icon">
+                    <!-- Animated glowing stethoscope icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h18v18H3z"/>
+                        <path d="M9 9h6v6H9z"/>
+                    </svg>
                 </div>
-                <div class="use-case">
-                    <div class="use-case-icon">💊</div>
-                    <h3>Medicine</h3>
-                    <p>Drug development, disease modeling, and personalized treatment strategies for improved patient outcomes.</p>
+                <h3>Medical & Health</h3>
+                <p>
+                    Simulate and analyze biological processes for medical research,
+                    drug development, and health education.
+                </p>
+            </div>
+            <div class="use-case">
+                <div class="use-case-icon">
+                    <!-- Animated glowing leaf and globe icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C10.343 2 9 3.343 9 5c0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zM12 9c-2.209 0-4 1.791-4 4s1.791 4 4 4s4-1.791 4-4S14.209 9 12 9z"/>
+                        <path d="M12 15v7m0-14V2m0 0C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5z"/>
+                    </svg>
                 </div>
-                <div class="use-case">
-                    <div class="use-case-icon">🌡️</div>
-                    <h3>Climate Modeling</h3>
-                    <p>Predict environmental changes and develop strategies for climate adaptation and mitigation.</p>
-                </div>
+                <h3>Ecology & Environment</h3>
+                <p>
+                    Model and simulate ecological interactions, environmental changes,
+                    and conservation efforts.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Live Demo Section -->
+    <!-- Demo Section -->
     <section id="demo" class="section fade-in">
-        <h2>Live Demo</h2>
+        <h2>Interactive Demo</h2>
         <div class="demo-preview">
-            <h3 style="color: var(--neon-green); margin-bottom: 1rem;">Interactive Simulation Preview</h3>
-            <p style="margin-bottom: 2rem;">Experience the power of BioVerse with our interactive cellular simulation demo.</p>
-            <div style="height: 200px; background: rgba(16, 185, 129, 0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;">
-                <p style="font-size: 1.2rem; color: var(--soft-green);">🧫 Live Cell Division Simulation</p>
-            </div>
-            <p style="margin-top: 1rem; color: var(--text-dim);">Click to interact with cellular processes in real-time</p>
+            <!-- Placeholder for interactive demo content -->
+            <p style="color: var(--text-light); font-size: 1.2rem; margin-bottom: 1.5rem;">
+                Experience a preview of the BioVerse simulation environment.
+            </p>
+            <a href="#" class="cta-button">Launch Demo</a>
         </div>
     </section>
 
     <!-- Team Section -->
     <section id="team" class="section fade-in">
-        <h2>Team & Contributors</h2>
+        <h2>Meet The Team</h2>
         <div class="team-grid">
             <div class="team-member">
-                <div class="member-avatar">👩‍🔬</div>
-                <h3>Dr. Sarah Chen</h3>
-                <p>Lead Biologist</p>
-                <p style="font-size: 0.9rem; color: var(--text-dim);">Computational Biology PhD, 15+ years in systems biology</p>
+                <div class="member-avatar">
+                    <!-- Initials or icon for team member -->
+                    A
+                </div>
+                <h3>Dr. Alex Johnson</h3>
+                <p>Founder & CEO</p>
+                <p class="text-dim" style="font-size: 0.9rem;">
+                    Visionary leader with a passion for exploring the frontiers of life and intelligence.
+                </p>
             </div>
             <div class="team-member">
-                <div class="member-avatar">👨‍💻</div>
-                <h3>Alex Rodriguez</h3>
-                <p>Chief Technology Officer</p>
-                <p style="font-size: 0.9rem; color: var(--text-dim);">AI/ML expert, former Google Research scientist</p>
+                <div class="member-avatar">
+                    <!-- Initials or icon for team member -->
+                    B
+                </div>
+                <h3>Dr. Bella Green</h3>
+                <p>Co-Founder & CTO</p>
+                <p class="text-dim" style="font-size: 0.9rem;">
+                    Tech innovator dedicated to advancing simulation and AI technologies.
+                </p>
             </div>
             <div class="team-member">
-                <div class="member-avatar">👩‍🎓</div>
-                <h3>Dr. Maria Petrov</h3>
-                <p>Ecosystem Modeling Lead</p>
-                <p style="font-size: 0.9rem; color: var(--text-dim);">Environmental science, climate modeling specialist</p>
+                <div class="member-avatar">
+                    <!-- Initials or icon for team member -->
+                    C
+                </div>
+                <h3>Dr. Charlie Brown</h3>
+                <p>Lead Scientist</p>
+                <p class="text-dim" style="font-size: 0.9rem;">
+                    Expert in biological sciences, driving research and discovery.
+                </p>
             </div>
             <div class="team-member">
-                <div class="member-avatar">👨‍⚕️</div>
-                <h3>Dr. James Wilson</h3>
-                <p>Medical Simulation Director</p>
-                <p style="font-size: 0.9rem; color: var(--text-dim);">MD/PhD, precision medicine and drug development</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog/Updates Section -->
-    <section id="blog" class="section fade-in">
-        <h2>Latest Updates</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-            <div class="feature-card">
-                <h3 style="color: var(--glow-cyan);">BioVerse 2.0 Release</h3>
-                <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem;">March 2025</p>
-                <p>New features include quantum-level molecular simulation and enhanced AI-driven ecosystem prediction models.</p>
-            </div>
-            <div class="feature-card">
-                <h3 style="color: var(--glow-cyan);">Partnership with WHO</h3>
-                <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem;">February 2025</p>
-                <p>Collaborating on global disease modeling and pandemic preparedness using BioVerse simulation capabilities.</p>
-            </div>
-            <div class="feature-card">
-                <h3 style="color: var(--glow-cyan);">Climate Summit Demo</h3>
-                <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem;">January 2025</p>
-                <p>Showcased ecosystem restoration simulations at the Global Climate Technology Summit.</p>
+                <div class="member-avatar">
+                    <!-- Initials or icon for team member -->
+                    D
+                </div>
+                <h3>Dr. Dana White</h3>
+                <p>Chief of Operations</p>
+                <p class="text-dim" style="font-size: 0.9rem;">
+                    Operations strategist ensuring seamless execution of our mission.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section fade-in">
-        <h2>Contact & Join Us</h2>
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <p style="margin-bottom: 2rem;">
-                Ready to explore the universe of life? Join our community of researchers, educators, and innovators 
-                shaping the future through biological simulation.
-            </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
-                <a href="mailto:contact@bioverse.ai" class="cta-button">Get Started</a>
-                <a href="#demo" class="cta-button" style="background: transparent; border: 2px solid var(--neon-green); color: var(--neon-green);">Request Demo</a>
+        <h2>Contact Us</h2>
+        <p>
+            We would love to hear from you! Whether you have a question, feedback, or partnership inquiry,
+            please reach out to us.
+        </p>
+        <form action="#" method="POST" style="max-width: 600px; margin: 0 auto;">
+            <div style="margin-bottom: 1.5rem;">
+                <input type="text" name="name" placeholder="Your Name" required
+                    style="width: 100%; padding: 1rem; border: 1px solid var(--neon-green); border-radius: 10px; background: rgba(255, 255, 255, 0.1);"/>
             </div>
-            <p style="color: var(--text-dim);">
-                📧 contact@bioverse.ai | 📞 +1 (555) 123-4567 | 🌐 bioverse.ai
-            </p>
-        </div>
+            <div style="margin-bottom: 1.5rem;">
+                <input type="email" name="email" placeholder="Your Email" required
+                    style="width: 100%; padding: 1rem; border: 1px solid var(--neon-green); border-radius: 10px; background: rgba(255, 255, 255, 0.1);"/>
+            </div>
+            <div style="margin-bottom: 1.5rem;">
+                <textarea name="message" rows="4" placeholder="Your Message" required
+                    style="width: 100%; padding: 1rem; border: 1px solid var(--neon-green); border-radius: 10px; background: rgba(255, 255, 255, 0.1);"></textarea>
+            </div>
+            <button type="submit" class="cta-button"
+                style="width: 100%; padding: 1rem; border: none; border-radius: 10px; background: linear-gradient(90deg, var(--neon-green), var(--glow-cyan));">
+                Send Message
+            </button>
+        </form>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Service</a>
-            <a href="#api">API Documentation</a>
-            <a href="#support">Support</a>
-            <a href="#careers">Careers</a>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#use-cases">Use Cases</a>
+            <a href="#demo">Demo</a>
+            <a href="#team">Team</a>
+            <a href="#contact">Contact</a>
         </div>
-        <p style="color: var(--text-dim);">
-            © 2025 BioVerse. All rights reserved. | Simulating Life to Shape the Future
+        <p style="color: var(--text-dim); font-size: 0.9rem;">
+            &copy; 2023 BioVerse. All rights reserved.
         </p>
     </footer>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                container.appendChild(particle);
-            }
-        }
-
-        // Smooth scrolling for navigation links
+        // Parallax scrolling effect for molecular/neural SVG layers
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const parallax1 = document.getElementById('parallax1');
+            const parallax2 = document.getElementById('parallax2');
+            if (parallax1) parallax1.style.transform = `translateY(${scrollY * 0.15}px)`;
+            if (parallax2) parallax2.style.transform = `translateY(${scrollY * 0.25}px)`;
+        });
+        // Smooth navigation for keyboard and mouse
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    e.preventDefault();
+                    target.setAttribute('tabindex', '-1');
+                    target.focus({preventScroll:true});
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
-
-        // Scroll animations
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.fade-in');
-            const windowHeight = window.innerHeight;
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('visible');
-                }
+        // Micro-interactions: subtle scale on feature cards and team avatars
+        document.querySelectorAll('.feature-card, .team-member, .use-case').forEach(el => {
+            el.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.04)';
             });
-        }
-
-        // Interactive demo
-        document.addEventListener('DOMContentLoaded', function() {
-            const demoPreview = document.querySelector('.demo-preview');
-            if (demoPreview) {
-                demoPreview.addEventListener('click', function() {
-                    this.style.background = 'rgba(16, 185, 129, 0.2)';
-                    setTimeout(() => {
-                        this.style.background = 'rgba(5, 16, 22, 0.9)';
-                    }, 300);
-                });
-            }
-        });
-
-        // Initialize
-        window.addEventListener('load', () => {
-            createParticles();
-            handleScrollAnimations();
-        });
-
-        window.addEventListener('scroll', handleScrollAnimations);
-
-        // Feature card hover effects
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'rgba(16, 185, 129, 0.15)';
+            el.addEventListener('mouseleave', function() {
+                this.style.transform = '';
             });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.background = 'rgba(16, 185, 129, 0.1)';
-            });
-        });
-
-        // Navigation background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(10, 22, 40, 0.95)';
-            } else {
-                nav.style.background = 'rgba(10, 22, 40, 0.9)';
-            }
         });
     </script>
 </body>
